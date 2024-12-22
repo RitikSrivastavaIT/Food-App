@@ -100,7 +100,7 @@ public class RestaurantServiceImpl implements RestaurantService{
     }
 
     @Override
-    public RestaurantDto addToFavourites(Long restaurantId, User user) throws Exception {
+    public RestaurantDto addToFavorites(Long restaurantId, User user) throws Exception {
         Restaurant restaurant = findRestaurantById(restaurantId);
         RestaurantDto dto = new RestaurantDto();
         dto.setDescription(restaurant.getDescription());
@@ -108,13 +108,19 @@ public class RestaurantServiceImpl implements RestaurantService{
         dto.setTitle(restaurant.getName());
         dto.setId(restaurantId);
 
-        if(user.getFavorites().contains(dto)){
-            user.getFavorites().remove(dto);
+        boolean isFavorite = false;
+        List<RestaurantDto> favorites = user.getFavorites();
+        for(RestaurantDto favorite: favorites){
+            if(favorite.getId().equals(restaurantId)){
+                isFavorite = true;
+                break;
+            }
         }
-        else{
-            user.getFavorites().add(dto);
+        if(isFavorite){
+            favorites.removeIf(favorite -> favorite.getId().equals(restaurantId));
+        }else{
+            favorites.add(dto);
         }
-
         userRepository.save(user);
         return dto;
     }
