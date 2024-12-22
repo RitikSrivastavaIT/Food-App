@@ -21,13 +21,35 @@ import java.util.List;
 
 public class JwtTokenValidator extends OncePerRequestFilter {
 
+    private final List<String> excludedPaths = List.of(
+            "/auth/signin",  // Add paths you want to skip
+            "/auth/signup",
+            "/" // Optionally, skip home page
+    );
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        String jwt = request.getHeader(JwtConstant.JWT_HEADER);
+        String requestURI = request.getRequestURI();
 
+        // Skip filtering for excluded paths
+        if (excludedPaths.contains(requestURI)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        String jwt = request.getHeader(JwtConstant.JWT_HEADER);
+        System.out.println("Processing request for URL: " + request.getRequestURI());
+        System.out.println("Authorization Header: " + jwt);
+
+        if (jwt == null || !jwt.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         if(jwt != null){
+
+            System.out.println("Authorization Header: " + jwt);
             jwt = jwt.substring(7);
             try{
                 SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());

@@ -70,7 +70,7 @@ public class AuthController {
         String jwt = jwtProvider.generateToken(authentication);
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(jwt);
-        authResponse.setMessage("Registration Successful");
+        authResponse.setMessage("Registration successful");
         authResponse.setRole(savedUser.getRole());
 
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
@@ -89,7 +89,10 @@ public class AuthController {
         String jwt = jwtProvider.generateToken(authentication);
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(jwt);
-        authResponse.setMessage("Registration Successful");
+        System.out.println("Authorization Header: " + jwt);
+
+        authResponse.setMessage("Login Successful");
+        System.out.println("Login Successful");
 
         authResponse.setRole(USER_ROLE.valueOf(role));
 
