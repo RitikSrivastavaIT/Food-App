@@ -1,7 +1,7 @@
 package com.ritik.request;
 
 import com.ritik.model.Category;
-import com.ritik.model.IngredientCategory;
+import com.ritik.model.IngredientsItem;
 import lombok.Data;
 
 import java.util.List;
@@ -18,5 +18,5 @@ public class CreateFoodRequest {
     private Long restaurantId;
     private boolean vegetarian;
     private boolean seasonal;
-    private List<IngredientCategory> ingredients;
+    private List<IngredientsItem> ingredients;
 }
