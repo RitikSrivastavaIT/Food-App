@@ -7,6 +7,7 @@ import com.ritik.request.AddCartItemRequest;
 import com.ritik.request.OrderRequest;
 import com.ritik.service.OrderService;
 import com.ritik.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@Tag(name = "Order APIs")
 public class OrderController {
 
     @Autowired

@@ -2,6 +2,7 @@ package com.ritik.controller;
 
 import com.ritik.model.User;
 import com.ritik.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/users")
+@Tag(name = "User API")
 public class UserController {
 
     @Autowired

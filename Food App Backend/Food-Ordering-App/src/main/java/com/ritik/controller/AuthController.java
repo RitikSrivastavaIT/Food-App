@@ -9,6 +9,7 @@ import com.ritik.repository.UserRepository;
 import com.ritik.request.LoginRequest;
 import com.ritik.response.AuthResponse;
 import com.ritik.service.CustomerUserDetailsService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Authentication APIs")
 public class AuthController {
 
     @Autowired

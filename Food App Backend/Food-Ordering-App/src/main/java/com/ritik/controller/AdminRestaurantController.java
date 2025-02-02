@@ -6,6 +6,7 @@ import com.ritik.request.CreateRestaurantRequest;
 import com.ritik.response.MessageResponse;
 import com.ritik.service.RestaurantService;
 import com.ritik.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/admin/restaurants")
+@Tag(name = "Restaurant Admin APIs")
 public class AdminRestaurantController {
 
     @Autowired
